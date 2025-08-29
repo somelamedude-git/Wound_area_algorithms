@@ -4,3 +4,10 @@ def read_image(path):
     img = cv.imread(path)
     return img
 
+def rescale_image(frame, scale):
+    width = int (frame[1]*scale)
+    height = int(frame[0]*scale)
+
+    dimensions = (width,height)
+    return cv.rescale(frame, dimensions, interpolation=cv.INTER_AREA)
+
