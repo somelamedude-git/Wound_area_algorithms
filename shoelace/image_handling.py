@@ -14,7 +14,7 @@ def read_image(path):
     img = cv.imread(path)
     return img
 
-def rescale_image(frame, scale):
+def rescale_image(frame, scale): #Will integrate when needed
     width = int (frame[1]*scale)
     height = int(frame[0]*scale)
 
@@ -27,7 +27,7 @@ def make_blur(frame, kernel_size=3):
     return blurred
 
 def binarize_image(frame):
-    _, imageThres = cv.threshold(frame, 0, 255, cv.THRESH_BINARY+CV.THRESH_OTSU)
+    _, imageThres = cv.threshold(frame, 0, 255, cv.THRESH_BINARY+cv.THRESH_OTSU)
     return imageThres
 
 def canny_image(thresholdFrame):
@@ -39,8 +39,8 @@ def get_contours(cannyImage):
     return contours
 
 def filter_contours(contours):
-    min_area = 0.0*max_area
     max_area = max(cv.contourArea(c) for c in contours)
+    min_area = 0.0*max_area
     max_coverage = 0.95*max_area
     filtered = [c for c in contours if cv.contourArea(c)>min_area and cv.contourArea(c)<max_coverage]
     return filtered
@@ -56,11 +56,16 @@ def combine_and_order_points(filtered_points):
 def find_area(frame):
     gray_ = make_grayscale(frame)
     blur_ = make_blur(gray_)
-    binary_ = binarize_image(blue_)
+    binary_ = binarize_image(blur_)
     canny_ = canny_image(binary_)
-    contours = get_contours(cany_)
+    contours = get_contours(canny_)
     filtered = filter_contours(contours)
     points = combine_and_order_points(filtered)
 
     area = shoelace_formula(points)
     return area*0.04
+
+def final_(path):
+    img = read_image(path)
+    area = find_area(img)
+    return area
