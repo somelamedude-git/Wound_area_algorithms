@@ -12,6 +12,8 @@ def make_grayscale(frame):
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     return gray
 
+def make_blur(frame, kernel_size):
+    blur = cv.GaussianBlur(frame, (kernel_size, kernel_size), cv.BORDER_DEFAULT)
     dimensions = (width,height)
     return cv.rescale(frame, dimensions, interpolation=cv.INTER_AREA)
 
