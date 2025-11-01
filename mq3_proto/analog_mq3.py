@@ -1,10 +1,13 @@
 import serial
 import time
+import csv
 
 try:
     ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 except serial.SerialException:
     print("Arduino not connected")
+
+c
 answer = 0
 count = 0
 while True:
