@@ -63,7 +63,7 @@ def find_area(frame):
     points = combine_and_order_points(filtered)
 
     area = shoelace_formula(points)
-    return area*0.04
+    return area
 
 def final_(path):
     img = read_image(path)
