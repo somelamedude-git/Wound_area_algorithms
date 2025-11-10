@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def PPI(width_pixels, height_pixels, diagonal_in_inches):
+def calc_PPI(width_pixels, height_pixels, diagonal_in_inches):
     diagonal_in_pixels = np.sqrt((width_pixels**2)+(height_pixels**2))
     return diagonal_in_pixels/diagonal_in_inches
 
