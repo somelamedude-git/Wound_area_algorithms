@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import time
 from xkc_kl200 import XKC_KL200, XKC_KL200_Error
-
+from pipelined import final_final
 def main():
     # Sensor am seriellen Port anschließen (anpassen je nach System)
     # Unter Windows z.B. 'COM3', unter Linux z.B. '/dev/ttyUSB0'
@@ -37,6 +37,7 @@ def main():
                         # Distanz auslesen und ausgeben
                         distance = sensor.get_distance()
                         print(f"Distanz: {distance} mm")
+                        print("standard area is", final_final('/random_path', 800, 480, 7, distance, 100)
                 
                 # Kurze Pause, um CPU-Last zu reduzieren
                 time.sleep(0.01)

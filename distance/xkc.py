@@ -331,9 +331,9 @@ class XKC_KL200:
         return checksum
 
     def _wait_for_response(self, expected_command_code, timeout=1.0):
-    start_time = time.time()
+        start_time = time.time()
 
-    while self._serial.in_waiting <9:
+        while self._serial.in_waiting <9:
         if time.time() - start_time > timeout:
             return XKC_KL200_Error.TIMEOUT
 
